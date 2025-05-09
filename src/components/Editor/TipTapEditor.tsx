@@ -29,7 +29,7 @@ const TipTapEditor = () => {
   });
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-white">
+    <div className="flex-1 flex flex-col overflow-hidden bg-white border border-slate-200 rounded-lg shadow-sm h-full">
       <MenuBar editor={editor} />
       <div className="overflow-auto flex-1">
         <EditorContent editor={editor} className="h-full" />
