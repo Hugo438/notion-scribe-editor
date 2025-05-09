@@ -1,14 +1,25 @@
 
-import { Editor } from '@tiptap/core';
+import { Editor } from '@tiptap/react';
 import {
   Bold,
   Italic,
+  Underline,
+  Strikethrough,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
   List,
   ListOrdered,
   Heading1,
   Heading2,
+  Heading3,
   Code,
   Quote,
+  Undo,
+  Redo,
+  Link,
+  Image,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -22,7 +33,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
   }
 
   return (
-    <div className="border-b border-slate-200 p-2 flex flex-wrap gap-1">
+    <div className="border-b border-slate-200 p-2 flex flex-wrap gap-1 overflow-x-auto">
       <Button
         variant="ghost"
         size="sm"
@@ -42,6 +53,70 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       >
         <Italic className="h-4 w-4" />
       </Button>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().toggleUnderline().run()}
+        className={editor.isActive('underline') ? 'bg-slate-200' : ''}
+        aria-label="Underline"
+      >
+        <Underline className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().toggleStrike().run()}
+        className={editor.isActive('strike') ? 'bg-slate-200' : ''}
+        aria-label="Strike"
+      >
+        <Strikethrough className="h-4 w-4" />
+      </Button>
+
+      <div className="w-px h-6 bg-slate-200 mx-1"></div>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().setTextAlign('left').run()}
+        className={editor.isActive({ textAlign: 'left' }) ? 'bg-slate-200' : ''}
+        aria-label="Align Left"
+      >
+        <AlignLeft className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().setTextAlign('center').run()}
+        className={editor.isActive({ textAlign: 'center' }) ? 'bg-slate-200' : ''}
+        aria-label="Align Center"
+      >
+        <AlignCenter className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().setTextAlign('right').run()}
+        className={editor.isActive({ textAlign: 'right' }) ? 'bg-slate-200' : ''}
+        aria-label="Align Right"
+      >
+        <AlignRight className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+        className={editor.isActive({ textAlign: 'justify' }) ? 'bg-slate-200' : ''}
+        aria-label="Align Justify"
+      >
+        <AlignJustify className="h-4 w-4" />
+      </Button>
+
+      <div className="w-px h-6 bg-slate-200 mx-1"></div>
 
       <Button
         variant="ghost"
@@ -66,6 +141,18 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       <Button
         variant="ghost"
         size="sm"
+        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+        className={editor.isActive('heading', { level: 3 }) ? 'bg-slate-200' : ''}
+        aria-label="Heading 3"
+      >
+        <Heading3 className="h-4 w-4" />
+      </Button>
+
+      <div className="w-px h-6 bg-slate-200 mx-1"></div>
+
+      <Button
+        variant="ghost"
+        size="sm"
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'bg-slate-200' : ''}
         aria-label="Bullet List"
@@ -82,6 +169,8 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       >
         <ListOrdered className="h-4 w-4" />
       </Button>
+
+      <div className="w-px h-6 bg-slate-200 mx-1"></div>
 
       <Button
         variant="ghost"
@@ -101,6 +190,54 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         aria-label="Blockquote"
       >
         <Quote className="h-4 w-4" />
+      </Button>
+
+      <div className="w-px h-6 bg-slate-200 mx-1"></div>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().setLink({ href: prompt('URL', 'https://') || '' }).run()}
+        className={editor.isActive('link') ? 'bg-slate-200' : ''}
+        aria-label="Link"
+      >
+        <Link className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => {
+          const url = prompt('Image URL', 'https://');
+          if (url) {
+            editor.chain().focus().setImage({ src: url }).run();
+          }
+        }}
+        aria-label="Image"
+      >
+        <Image className="h-4 w-4" />
+      </Button>
+
+      <div className="w-px h-6 bg-slate-200 mx-1"></div>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().undo().run()}
+        disabled={!editor.can().undo()}
+        aria-label="Undo"
+      >
+        <Undo className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().redo().run()}
+        disabled={!editor.can().redo()}
+        aria-label="Redo"
+      >
+        <Redo className="h-4 w-4" />
       </Button>
     </div>
   );

@@ -1,24 +1,37 @@
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import Underline from '@tiptap/extension-underline';
+import TextAlign from '@tiptap/extension-text-align';
+import Image from '@tiptap/extension-image';
+import Link from '@tiptap/extension-link';
 import MenuBar from './MenuBar';
 
 const TipTapEditor = () => {
   const editor = useEditor({
     extensions: [
       StarterKit,
+      Underline,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
+      Image,
+      Link.configure({
+        openOnClick: true,
+      }),
     ],
     content: `
       <h1>Welcome to your NotionLike Editor!</h1>
-      <p>This is a <strong>TipTap</strong> editor with <em>basic formatting</em> capabilities.</p>
+      <p>This is a <strong>TipTap</strong> editor with <em>enhanced formatting</em> capabilities.</p>
       <p>Try out the formatting options in the toolbar above:</p>
       <ul>
-        <li>Create headings</li>
-        <li>Format your text with <strong>bold</strong> or <em>italic</em></li>
-        <li>Add lists like this one</li>
-        <li>And much more!</li>
+        <li>Create different levels of headings</li>
+        <li>Format your text with <strong>bold</strong>, <em>italic</em>, <u>underline</u>, or <s>strikethrough</s></li>
+        <li>Align your text to the left, center, right, or justify it</li>
+        <li>Create bullet or numbered lists</li>
+        <li>Add code blocks, quotes, links, and images</li>
       </ul>
-      <blockquote>You can even add quotes like this one.</blockquote>
+      <blockquote>You can add quotes like this one.</blockquote>
       <p>Start typing to create your content...</p>
     `,
     editorProps: {
