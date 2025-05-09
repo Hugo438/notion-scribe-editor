@@ -1,6 +1,5 @@
 
 import { ReactNode } from 'react';
-import Navbar from './Navbar';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -9,7 +8,6 @@ interface MainLayoutProps {
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <div className="h-screen flex flex-col">
-      <Navbar />
       <main className="flex-1 overflow-hidden flex items-center justify-center">
         {children}
       </main>

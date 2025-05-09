@@ -30,7 +30,7 @@ const TipTapEditor = () => {
     content: `
       <h1>Welcome to your NotionLike Editor!</h1>
       <p>This is a <strong>TipTap</strong> editor with <em>enhanced formatting</em> capabilities.</p>
-      <p>Try out the formatting options in the toolbar above:</p>
+      <p>Try out the formatting options in the toolbar below:</p>
       <ul>
         <li>Create different levels of headings</li>
         <li>Format your text with <strong>bold</strong>, <em>italic</em>, <u>underline</u>, or <s>strikethrough</s></li>
@@ -50,9 +50,11 @@ const TipTapEditor = () => {
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden bg-white border border-slate-200 rounded-lg shadow-sm h-full">
-      <MenuBar editor={editor} />
       <div className="overflow-auto flex-1">
         <EditorContent editor={editor} className="h-full" />
+      </div>
+      <div className="sticky bottom-0 w-full bg-white border-t border-slate-200 z-10">
+        <MenuBar editor={editor} />
       </div>
     </div>
   );
