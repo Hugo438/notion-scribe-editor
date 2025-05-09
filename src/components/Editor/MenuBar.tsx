@@ -1,4 +1,3 @@
-
 import { Editor } from '@tiptap/react';
 import {
   Bold,
@@ -79,7 +78,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => editor.chain().focus().textAlign('left').run()}
+        onClick={() => editor.chain().focus().setTextAlign('left').run()}
         className={editor.isActive({ textAlign: 'left' }) ? 'bg-slate-200' : ''}
         aria-label="Align Left"
       >
@@ -89,7 +88,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => editor.chain().focus().textAlign('center').run()}
+        onClick={() => editor.chain().focus().setTextAlign('center').run()}
         className={editor.isActive({ textAlign: 'center' }) ? 'bg-slate-200' : ''}
         aria-label="Align Center"
       >
@@ -99,7 +98,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => editor.chain().focus().textAlign('right').run()}
+        onClick={() => editor.chain().focus().setTextAlign('right').run()}
         className={editor.isActive({ textAlign: 'right' }) ? 'bg-slate-200' : ''}
         aria-label="Align Right"
       >
@@ -109,7 +108,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => editor.chain().focus().textAlign('justify').run()}
+        onClick={() => editor.chain().focus().setTextAlign('justify').run()}
         className={editor.isActive({ textAlign: 'justify' }) ? 'bg-slate-200' : ''}
         aria-label="Align Justify"
       >
@@ -210,7 +209,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         onClick={() => {
           const url = prompt('Image URL', 'https://');
           if (url) {
-            editor.chain().focus().insertImage({ src: url }).run();
+            editor.chain().focus().setImage({ src: url }).run();
           }
         }}
         aria-label="Image"
