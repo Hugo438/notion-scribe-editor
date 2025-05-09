@@ -5,6 +5,7 @@ import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
+import Youtube from '@tiptap/extension-youtube';
 import MenuBar from './MenuBar';
 
 const TipTapEditor = () => {
@@ -19,6 +20,12 @@ const TipTapEditor = () => {
       Link.configure({
         openOnClick: true,
       }),
+      Youtube.configure({
+        width: 640,
+        height: 480,
+        controls: true,
+        nocookie: true,
+      }),
     ],
     content: `
       <h1>Welcome to your NotionLike Editor!</h1>
@@ -29,7 +36,7 @@ const TipTapEditor = () => {
         <li>Format your text with <strong>bold</strong>, <em>italic</em>, <u>underline</u>, or <s>strikethrough</s></li>
         <li>Align your text to the left, center, right, or justify it</li>
         <li>Create bullet or numbered lists</li>
-        <li>Add code blocks, quotes, links, and images</li>
+        <li>Add code blocks, quotes, links, images, and YouTube videos</li>
       </ul>
       <blockquote>You can add quotes like this one.</blockquote>
       <p>Start typing to create your content...</p>

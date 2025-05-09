@@ -1,3 +1,4 @@
+
 import { Editor } from '@tiptap/react';
 import {
   Bold,
@@ -19,6 +20,7 @@ import {
   Redo,
   Link,
   Image,
+  Youtube,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -215,6 +217,24 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         aria-label="Image"
       >
         <Image className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => {
+          const url = prompt('YouTube URL', 'https://www.youtube.com/watch?v=');
+          if (url) {
+            editor.commands.setYoutubeVideo({
+              src: url,
+              width: 640,
+              height: 480,
+            });
+          }
+        }}
+        aria-label="YouTube Video"
+      >
+        <Youtube className="h-4 w-4" />
       </Button>
 
       <div className="w-px h-6 bg-slate-200 mx-1"></div>
